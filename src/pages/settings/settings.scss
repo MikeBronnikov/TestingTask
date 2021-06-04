@@ -1,0 +1,42 @@
+.settings {
+    display: flex;
+    &__tabswrap{
+        display: inline-block;
+        width: 100%;
+    }
+    &__tablist{
+        display: flex;
+        flex-direction: row;
+        height: 54px;
+        border-bottom: 1px solid #E4E7EB;
+        justify-content: start;
+        list-style-type: none;
+        margin: 0px;
+        padding-left: 20px;
+    }
+
+    &__tab{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 110px;
+        cursor: pointer;
+        color: black;
+        font-weight: 500;
+        &:not(:first-child){
+        margin-left: 40px; 
+        }
+}
+}
+
+//third party classnames
+.react-tabs__tab--selected{
+    padding-top: 3px; //to prevent from jumping
+   background: inherit !important;
+   border-bottom: 3px solid #1665D8 !important
+}
+
+@media (max-width: 939px) {
+
+}

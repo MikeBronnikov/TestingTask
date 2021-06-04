@@ -1,0 +1,223 @@
+.profile{
+    display: flex;
+    padding: 24px;
+    &__info{
+        background: white;
+        border-radius: 5px;
+        width: 100%;
+        max-width: 375px;
+        height: 249px;
+        border: 1px solid rgba(63, 63, 68, 0.005);
+        box-shadow: 0px 1px 3px rgba(63, 63, 68, 0.15);
+    }
+    &__rightside{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    &__top{
+        display: flex;
+        padding-top: 24px;
+       margin-bottom: 24px;
+    }
+    &__leftside{
+        display: flex;
+       align-items: flex-start;
+       padding-left: 24px;
+        flex-direction: column;
+        width: 50%;
+        margin-right: 22px;
+    }
+    &__name{
+        font-weight: 500;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    &__location, &__time{
+        font-size: 14px;
+        color: #9EA0A5;
+        margin-bottom: 2px;
+    }
+   &__settingsphoto{
+       margin-right: 9px;
+   }
+    &__buttom{
+        display: flex;
+        padding-top: 22px;
+        justify-content: space-around;
+        border-top: 1px solid #E4E7EB;
+        button{
+            font-weight: 500;
+            font-size: 12px;
+           &:first-child{
+               color: #1665D8;
+           }
+        }
+    }
+}
+.basic{
+    width: 100%;
+    max-width: 910px;
+    height: 454px;
+    background: white;
+    border-radius: 5px;
+    margin-left: 28px;
+    box-shadow: 0px 1px 0px rgba(63, 63, 68, 0.05), 0px 1px 3px rgba(63, 63, 68, 0.15);
+    &__header{
+        text-align: left;
+        padding: 26px 24px 26px 24px;
+    }
+    &__title{
+        font-weight: 500;
+    }
+    &__subtitle{
+    margin-left: 16px;
+    font-weight: 300;
+    color: #66788A;
+    }
+    &__body{
+        border-top: 1px solid #E4E7EB;
+        display: flex;
+        padding-bottom: 24px;
+        border-bottom: 1px solid #E4E7EB;
+    }
+    &__inputs{
+        width: 100%;
+        max-width: 328px;
+        min-width: 90px;
+        display: flex;
+        flex-direction: column;
+        margin-left: 24px;
+        &:last-child{
+            margin-right: 10px;
+        }
+    }
+    &__specify{
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.6);
+        text-align: left;
+        padding: 5px 0px 0px 15px;
+        margin-bottom: -19px;
+        &_blue{
+            color: #1665D8;
+        }
+    }
+    &__input{
+        width: 100%;
+        max-width: 328px;
+       
+        z-index: 1;
+        margin-top: 24px !important;
+        &_error{
+            border: 1px solid red !important;
+            border-radius: 5px;
+        }
+        &:last-child{
+          
+            margin-right: 14px;
+        }
+    }
+    &__footer{
+        display: flex;
+        height: 97px;
+        margin-left: 24px;
+        justify-content: start;
+        align-items: center;
+    }
+    &__button{
+        width: 100%;
+        max-width: 152px;
+        height: 40px;
+        color: white;
+        background-color: #1665D8;
+        transition: background-color .7s ease-in-out;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        &:disabled{
+            cursor: initial;
+            background: #c2c6cb;
+        }
+    }
+    &__circular{
+        height: 20px;
+    }
+}
+.notifications{
+    margin-top: 15px;
+    label{
+        color: rgba(0, 0, 0, 0.6);
+        margin-left: 5px;
+        margin-top: 4px;
+    }
+    &__button{
+        background: white;
+        color: #1665D8;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        box-shadow: none;
+    }
+    &__leftwrapper{
+    display: flex;  
+    flex-direction: column;
+    margin-left: 24px;
+    }
+    &__rightwrapper{
+        margin-left: 50px;
+       
+    }
+    &__body{
+        margin-top: 5px;
+        padding-top: 20px;
+    }
+    &__title{
+        text-align: left;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+    &__item{
+        margin-bottom: 17px;
+        display: flex;
+    }
+    &__checkbox{
+        border: 1px solid #000;
+        height: 18px;
+        width: 18px;
+        color: red;
+    }
+}
+@media (max-width: 939px) {
+    .profile{
+        flex-direction: column;
+        padding: 18px;
+        
+    }  
+    .basic{
+        margin-left: 0px;
+        margin-top: 20px;
+        height: 100%;
+        &__body{
+            flex-direction: column;
+        }
+        &__inputs{
+            width: 85%;
+        }
+    }
+    .notifications{
+        &__rightwrapper{
+            margin-left: 24px;
+        }
+    }
+}
+@media (max-width: 509px) {
+    .profile{
+      padding: 8px !important;
+    }  
+
+}
+@media (max-width: 374px) {
+    .profile{
+     &__name{
+         font-size: 10px;
+     }
+    }  
+
+}
