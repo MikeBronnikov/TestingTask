@@ -70,3 +70,10 @@
         }
     }  
 }
+@media (max-width: 370px) {
+    .header{
+        &__textwrap{
+            display: none;
+        }
+    }
+}

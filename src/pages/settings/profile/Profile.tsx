@@ -11,7 +11,7 @@ import MuiPhoneNumber from "material-ui-phone-number";
 import { useSnackbar } from "notistack";
 import { asyncFunctionSimulator } from "../../../BLL/CloneFunctions";
 
-enum serverAnsers {
+enum serverAnswers {
   succsess = "succsess",
   failed = "failed",
 }
@@ -47,7 +47,7 @@ const Profile = (props: Props) => {
       formik.setSubmitting(true);
       let response = await asyncFunctionSimulator(values);
       formik.setSubmitting(false);
-      if (response === serverAnsers.succsess) {
+      if (response === serverAnswers.succsess) {
         setisSettingsSaved(true);
         enqueueSnackbar("Successfully changed", {
           variant: "success",
@@ -83,7 +83,7 @@ const Profile = (props: Props) => {
       <div className="profile__rightside">
         <form onSubmit={formik.handleSubmit} className="basic">
           <div className="basic__header">
-            <span className="basic__title">Basic Profile</span>{" "}
+            <span className="basic__title">Basic Profile</span>
             <span className="basic__subtitle">
               The information can be edited from yuor profile page
             </span>
