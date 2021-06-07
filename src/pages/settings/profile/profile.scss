@@ -130,12 +130,13 @@
         height: 40px;
         color: white;
         background-color: #1665D8;
-        transition: background-color .7s ease-in-out;
+        transition: background-color .5s ease-in-out;
         box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2);
         border-radius: 4px;
         &:disabled{
             cursor: initial;
             background: #c2c6cb;
+            color: white;
         }
     }
     &__circular{

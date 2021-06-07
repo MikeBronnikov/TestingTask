@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./header.scss";
 import logo from "../../assets/img/logo.svg";
 import free from "../../assets/img/free.svg";

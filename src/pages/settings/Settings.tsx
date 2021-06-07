@@ -1,8 +1,7 @@
-import React, { ReactEventHandler, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import "./settings.scss";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
 import Profile from "./profile/Profile";
 
 type PropsType = {

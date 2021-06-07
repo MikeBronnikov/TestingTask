@@ -15,11 +15,20 @@ enum serverAnswers {
   succsess = "succsess",
   failed = "failed",
 }
-export type initialFormikValues = {
+export type initialFormikBasicValues = {
   fristName: undefined | string;
   lastName: undefined | string;
   email: undefined | string;
   number: undefined | number;
+};
+export type initialFormikNotificationsValues = {
+Email: boolean
+PushNotifications: boolean
+TextMessages: boolean
+PhoneCalls : boolean
+EmailMessages: boolean
+PushNotificationsMessages: boolean
+TextMessagesMessages: boolean
 };
 //here you can change answer only once instead of in every place on app
 
@@ -28,7 +37,7 @@ const Profile = (props: Props) => {
   const [isSettingsSaved, setisSettingsSaved] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
-  const formik = useFormik<initialFormikValues>({
+  const formikBasic = useFormik<initialFormikBasicValues>({
     initialValues: {
       fristName: "",
       lastName: "",
@@ -44,9 +53,9 @@ const Profile = (props: Props) => {
     validateOnChange: true,
     validateOnBlur: true,
     onSubmit: async (values) => {
-      formik.setSubmitting(true);
+      formikBasic.setSubmitting(true);
       let response = await asyncFunctionSimulator(values);
-      formik.setSubmitting(false);
+      formikBasic.setSubmitting(false);
       if (response === serverAnswers.succsess) {
         setisSettingsSaved(true);
         enqueueSnackbar("Successfully changed", {
@@ -57,12 +66,47 @@ const Profile = (props: Props) => {
             horizontal: "right",
           },
         });
-        formik.resetForm();
+        formikBasic.resetForm();
       }
       console.log(values);
     },
   });
 
+
+  const formikNitifications = useFormik<initialFormikNotificationsValues>({
+    initialValues: {
+      Email: false,
+      PushNotifications: false,
+      TextMessages: false,
+      PhoneCalls : false,
+      EmailMessages: false,
+      PushNotificationsMessages: false,
+      TextMessagesMessages: false,
+    },
+
+    validateOnChange: true,
+    validateOnBlur: true,
+    onSubmit: async (values) => {
+ 
+      formikNitifications.setSubmitting(true);
+      let response = await asyncFunctionSimulator(values);
+      formikNitifications.setSubmitting(false);
+      if (response === serverAnswers.succsess) {
+        setisSettingsSaved(true);
+        enqueueSnackbar("Successfully changed", {
+          variant: "success",
+          autoHideDuration: 5000,
+          anchorOrigin: {
+            vertical: "bottom",
+            horizontal: "right",
+          },
+        });
+        formikNitifications.resetForm();
+      }
+    },
+  });
+  
+  
   return (
     <div className="profile">
       <div className="profile__info">
@@ -81,7 +125,7 @@ const Profile = (props: Props) => {
       </div>
 
       <div className="profile__rightside">
-        <form onSubmit={formik.handleSubmit} className="basic">
+        <form onSubmit={formikBasic.handleSubmit} className="basic">
           <div className="basic__header">
             <span className="basic__title">Basic Profile</span>
             <span className="basic__subtitle">
@@ -92,28 +136,28 @@ const Profile = (props: Props) => {
             <div className="basic__inputs">
               <TextField
                 name="fristName"
-                value={formik.values.fristName}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                value={formikBasic.values.fristName}
+                onChange={formikBasic.handleChange}
+                onBlur={formikBasic.handleBlur}
                 label="First Name"
                 variant="outlined"
                 className="basic__input"
               />
-              {formik.errors.fristName && formik.touched.fristName && (
+              {formikBasic.errors.fristName && formikBasic.touched.fristName && (
                 <span className="basic__specify">
                   Please specify the first name
                 </span>
               )}
               <TextField
                 name="email"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                value={formikBasic.values.email}
+                onChange={formikBasic.handleChange}
+                onBlur={formikBasic.handleBlur}
                 label="Email"
                 variant="outlined"
                 className="basic__input"
               />
-              {formik.errors.email && formik.touched.email && (
+              {formikBasic.errors.email && formikBasic.touched.email && (
                 <span className="basic__specify">Please specify the email</span>
               )}
               <TextField
@@ -125,14 +169,14 @@ const Profile = (props: Props) => {
             <div className="basic__inputs">
               <TextField
                 name="lastName"
-                value={formik.values.lastName}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                value={formikBasic.values.lastName}
+                onChange={formikBasic.handleChange}
+                onBlur={formikBasic.handleBlur}
                 label="Last name"
                 variant="outlined"
                 className="basic__input"
               />
-              {formik.errors.lastName && formik.touched.lastName && (
+              {formikBasic.errors.lastName && formikBasic.touched.lastName && (
                 <span className="basic__specify">
                   Please specify the last name
                 </span>
@@ -155,11 +199,11 @@ const Profile = (props: Props) => {
             <button
               type="submit"
               aria-label="save changes"
-              disabled={!(formik.isValid && formik.dirty)}
+              disabled={!(formikBasic.isValid && formikBasic.dirty)}
               className="basic__button"
             >
               {" "}
-              {formik.isSubmitting ? (
+              {formikBasic.isSubmitting ? (
                 <CircularProgress
                   style={{ color: "white" }}
                   size="20px"
@@ -173,7 +217,7 @@ const Profile = (props: Props) => {
           </div>
         </form>
 
-        <form className="basic notifications">
+        <form onSubmit={formikNitifications.handleSubmit} className="basic notifications">
           <div className="notifications basic__header">
             <span className="notifications basic__title">Notifications</span>
             <span className="notifications basic__subtitle">
@@ -186,6 +230,9 @@ const Profile = (props: Props) => {
               <div className="notifications__item">
                 <input
                   id="1"
+                  name='Email'
+                  checked={formikNitifications.values.Email}
+                  onChange={formikNitifications.handleChange}
                   className="notifications__checkbox"
                   type="checkbox"
                 />
@@ -194,6 +241,9 @@ const Profile = (props: Props) => {
               <div className="notifications__item">
               <input
                 id="2"
+                name='PushNotifications'
+                checked={formikNitifications.values.PushNotifications}
+                onChange={formikNitifications.handleChange}
                 className="notifications__checkbox"
                 type="checkbox"
               />
@@ -202,14 +252,20 @@ const Profile = (props: Props) => {
               <div className="notifications__item">
               <input
                 id="3"
+                name='TextMessages'
+                checked={formikNitifications.values.TextMessages}
+                onChange={formikNitifications.handleChange}
                 className="notifications__checkbox"
                 type="checkbox"
               />
-              <label htmlFor="4">Text Messages</label>
+              <label htmlFor="3">Text Messages</label>
               </div>
               <div className="notifications__item">
               <input
                 id="4"
+                name='PhoneCalls'
+                checked={formikNitifications.values.PhoneCalls}
+                onChange={formikNitifications.handleChange}
                 className="notifications__checkbox"
                 type="checkbox"
               />
@@ -220,27 +276,36 @@ const Profile = (props: Props) => {
               <p className="notifications__title">Messages</p>
               <div className="notifications__item">
                 <input
-                  id="1"
+                  id="1.1"
+                  name='EmailMessages'
+                checked={formikNitifications.values.EmailMessages}
+                onChange={formikNitifications.handleChange}
                   className="notifications__checkbox"
                   type="checkbox"
                 />
-                <label htmlFor="1">Email</label>
+                <label htmlFor="1.1">Email</label>
               </div>
               <div className="notifications__item">
               <input
-                id="2"
+                id="2.2"
+                name='PushNotificationsMessages'
+                checked={formikNitifications.values.PushNotificationsMessages}
+                onChange={formikNitifications.handleChange}
                 className="notifications__checkbox"
                 type="checkbox"
               />
-              <label htmlFor="2">Push notifications</label>
+              <label htmlFor="2.2">Push notifications</label>
               </div>
               <div className="notifications__item">
               <input
-                id="3"
+                id="3.3"
+                name='TextMessagesMessages'
+                checked={formikNitifications.values.TextMessagesMessages}
+                onChange={formikNitifications.handleChange}
                 className="notifications__checkbox"
                 type="checkbox"
               />
-              <label htmlFor="4">Text Messages</label>
+              <label htmlFor="3.3">Text Messages</label>
               </div>
               
             </div>
@@ -248,10 +313,20 @@ const Profile = (props: Props) => {
           <div className="basic__footer">
             <button
               type="submit"
+              disabled={!formikNitifications.dirty}
               aria-label="save changes"
               className="basic__button notifications__button"
             >
-              SAVE
+              {formikNitifications.isSubmitting
+              ? <CircularProgress
+              style={{ color: "blue" }}
+              size="20px"
+              className="basic__circular"
+              aria-label="progress loader"
+            />
+              :
+              'SAVE'
+              }
             </button>
           </div>
         </form>
