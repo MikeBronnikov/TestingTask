@@ -6,6 +6,7 @@
 
 ## Формулировка задания
 Базовое
+
 Вводные: имеется <a href='https://www.figma.com/file/b3L1Np4RYiicZAOMopHNkm/react-material-dashboard-free?node-id=0%3A1972' target="_blank">дизайн</a> 
 Задания:
 Развернуть пустой проект с помощью create-react-app (или create-next-app)
